@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="bawei@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="bawei">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="8cppnew"/>
+    <schema id="4" parent="1" name="8cpp_qibosoft"/>
+    <schema id="5" parent="1" name="ccmtvdb"/>
+    <schema id="6" parent="1" name="chat"/>
+    <schema id="7" parent="1" name="hc"/>
+    <schema id="8" parent="1" name="hengrui"/>
+    <schema id="9" parent="1" name="home-qa"/>
+    <schema id="10" parent="1" name="information_schema"/>
+    <schema id="11" parent="1" name="micromvc"/>
+    <schema id="12" parent="1" name="mysql"/>
+    <schema id="13" parent="1" name="performance_schema"/>
+    <schema id="14" parent="1" name="php168x1"/>
+    <schema id="15" parent="1" name="rainbowchat_sd_utf8mb4"/>
+    <schema id="16" parent="1" name="shanzhu_crm"/>
+    <schema id="17" parent="1" name="sys"/>
+    <schema id="18" parent="1" name="waimai2"/>
+    <table id="19" parent="2" name="lession_excel"/>
+    <column id="20" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="21" parent="19" name="name">
+      <Position>2</Position>
+      <DataType>varchar(10)|0</DataType>
+    </column>
+    <column id="22" parent="19" name="score">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+  </database-model>
+</dataSource>

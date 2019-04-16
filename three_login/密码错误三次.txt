@@ -1,0 +1,40 @@
+public function actionLogin(){
+        $model = new User();
+        $data = $_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR'];
+        $session = Yii::$app->session;
+        $session->open();   
+        $num = $session->get(md5($data)) ? $session->get(md5($data)) : 0;
+         //登陆次数加一
+        $session->set(md5($data) , $num+1 , 60*20);
+        //echo $num;die;
+        if($num<=3){
+            $model->scenario = 'login'; 
+        }else{
+            $model->scenario = 'verifyCode';//加载验证码
+        }
+        if(Yii::$app->request->post()){ 
+            $user=$_POST['User'];
+            $name=$user['username'];
+            //echo $name;die;
+            $pwd=$user['password'];
+            //连接数据库
+            $db=Yii::$app->db;
+            //查询用户信息
+            $user_info=$db->createCommand("select * from register where username='$name'")->queryOne();       
+            if($user_info['username']){
+                //用户存在                 
+                if($user_info['password']==$pwd){
+                    echo '登录成功';                  
+                    $session->set(md5($data) ,'0');
+                }else{
+                    //密码不存在或不正确                  
+               return $this->render('login',['model'=>$model,'num'=>$num]);
+                }
+            }else{
+                //该用户不存在或不正确
+               return $this->render('login',['model'=>$model,'num'=>$num]);
+            }
+        }else{               
+               return $this->render('login',['model'=>$model,'num'=>$num]);//num次数 
+        }
+    }
