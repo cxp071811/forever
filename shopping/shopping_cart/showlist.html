@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+当前用户：<a style="font-size: 150%;color: red" >
+    <?php
+            if(isset($_SESSION['user_name'])){
+             echo $_SESSION['user_name'];
+         ?>
+    <a href="__MODULE__/Index/logout">(退出登录)</a>
+    <?php
+
+            }else{
+                echo '未登录';
+
+        ?>
+    <a href="__MODULE__/Index/login">(登录)</a>
+    <?php }?>
+</a>
+
+<a style="font-size: 150%;color: blue" href="__CONTROLLER__/shop_cart">购物车内容</a>
+</br></br>
+<a style="font-size: 150%;color: blue">商品列表：</a>
+<table border="1"  height="400px" width="400px">
+    <td style="font-size: 120%;color: blue;text-align: center">商品id</td>
+    <td style="font-size: 120%;color: blue;text-align: center">商品名字</td>
+    <td style="font-size: 120%;color: blue;text-align: center">商品数量</td>
+    <td style="font-size: 120%;color: blue;text-align: center">商品价格</td>
+    <td style="font-size: 120%;color: blue;text-align: center">操作</td>
+
+    <volist name="goods_list" id="v1">
+        <tr>
+            <td width="50px">{$v1.goods_id}</td>
+            <td >{$v1.goods_name}</td>
+            <td >{$v1.goods_num}</td>
+            <td >{$v1.goods_price}</td>
+            <td style="font_size:150%;color: red;text-align:center" >
+                <a href="__CONTROLLER__/shop_cart?goods_name={$v1.goods_name}&goods_id={$v1.goods_id}">加入购物车
+            </td>
+        </tr>
+
+
+    </volist>
+</table>
+
+</body>
+</html>

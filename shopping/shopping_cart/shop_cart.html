@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+当前用户：
+<a style="font-size: 150%;color: red;" >
+    <?php
+            if(isset($_SESSION['user_name']))
+                echo $_SESSION['user_name'] . "     ";
+            else
+                echo '未登录';
+
+        ?>
+</a>
+
+<a style="font-size: 150%;color: #f0c040" href="__CONTROLLER__/showlist"  >继续购物</a>
+</br>
+</br>
+<a style="font-size: 150%;color: blue" >购物车状态：</a>
+<table border="1"  height="400px" width="400px">
+    <td style="font-size: 120%;color: blue;text-align: center">商品id</td>
+    <td style="font-size: 120%;color: blue;text-align: center">商品名字</td>
+    <td style="font-size: 120%;color: blue;text-align: center">商品数量</td>
+    <td style="font-size: 120%;color: blue;text-align: center">商品价格</td>
+
+
+    <volist name="shop_cart" id="val">
+        <tr>
+            <td width="50px"><?php echo $val['goods_id']?></td>
+            <td ><?php echo $val['goods_name']?></td>
+            <td ><?php echo $val['goods_num']?></td>
+            <td ><?php echo $val['goods_price']?></td>
+        </tr>
+    </volist>
+
+</table>
+
+<form name="myform" method="POST" action="__CONTROLLER__/finish">
+
+    <input type="hidden" name="goods_id" value=" $val['goods_id']" /><br/>
+
+    <input type="hidden" name="goods_name" value="$val['goods_name']" /><br/>
+
+    <input type="hidden" name="goods_num" value="$val['goods_num']" /><br/>
+
+    <input type="hidden" name="goods_price" value="$val['goods_price']" />
+
+    <input type="submit" name="sub" style="font-size: 200%;color: red" value="结算购物车" />
+    <a href="__CONTROLLER__/clean_cart"><input type="button" value="清空购物车" style="font-size: 200%;color: red"></a>
+
+</form>
+
+</body>
+</html>
